@@ -57,8 +57,10 @@ If the previous line gives the following error:
 [Date] mysqld_safe Directory '/var/run/mysqld' for UNIX socket file don't exists.
 ```
 you need to create the directory:
+```bash
 sudo mkdir -p /var/run/mysqld
 sudo chown mysql:mysql /var/run/mysqld
+```
 
 - Connect to MySQL:
 ```bash
@@ -69,6 +71,7 @@ mysql -uroot
 ```bash
 use mysql;
 update user set authentication_string=password('1111') where user='root';
+update user set plugin="mysql_native_password" where User='root';
 flush privileges;
 quit
 ```
